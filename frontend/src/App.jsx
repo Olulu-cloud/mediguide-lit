@@ -4,7 +4,7 @@ import SymptomPage from './pages/SymptomPage'
 import Shop from './pages/Shop'
 // Import the new Trust and Safety page component
 import TrustAndSafetyPage from './pages/TrustAndSafetyPage' 
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { HashRouter as BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 // Import necessary icons from Heroicons (make sure these are installed)
 import { HomeIcon, ShoppingCartIcon, ScaleIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
 
