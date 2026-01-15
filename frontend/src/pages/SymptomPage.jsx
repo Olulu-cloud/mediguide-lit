@@ -10,7 +10,7 @@ export default function SymptomPage() {
     setLoading(true);
     try {
       // Points to your Flask backend on port 5001
-      const res = await fetch('http://localhost:5001/api/health/symptoms', {
+      const res = await fetch('https://mediguide-lit.onrender.com/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ symptoms: input })

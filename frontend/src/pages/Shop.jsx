@@ -6,7 +6,7 @@ export default function Shop(){
 
   useEffect(()=>{
     // Using port 5001 to match your backend
-    fetch('http://localhost:5001/api/products') 
+    fetch('https://mediguide-lit.onrender.com/') 
       .then(r => r.json())
       .then(data => {
         setProducts(data)
