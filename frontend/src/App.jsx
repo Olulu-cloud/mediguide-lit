@@ -1,21 +1,20 @@
-import React, { useState } from 'react'; // Import useState
+import React, { useState } from 'react';
 import Home from './pages/Home'
 import SymptomPage from './pages/SymptomPage'
 import Shop from './pages/Shop'
 import TrustAndSafetyPage from './pages/TrustAndSafetyPage'
 import { HashRouter as BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-// Import icons needed for the menu toggle
-import { HomeIcon, ShoppingCartIcon, ScaleIcon, ShieldCheckIcon, MenuIcon, XIcon } from '@heroicons/react/24/outline'
+// FIX: Changed XIcon to XMarkIcon
+import { HomeIcon, ShoppingCartIcon, ScaleIcon, ShieldCheckIcon, MenuIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 export default function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
 
-  // Helper component for navigation links
   const NavLink = ({ to, children, Icon }) => (
     <Link 
       to={to} 
       className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100 hover:text-blue-600 transition duration-150"
-      onClick={() => setIsMenuOpen(false)} // Close menu when a link is clicked
+      onClick={() => setIsMenuOpen(false)} 
     >
       <Icon className="h-5 w-5" />
       <span>{children}</span>
@@ -32,7 +31,7 @@ export default function App() {
               MediGuide Lite
             </div>
             
-            {/* Desktop Navigation (visible on medium screens and up) */}
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-4">
               <NavLink to="/" Icon={HomeIcon}>Home</NavLink>
               <NavLink to="/symptom" Icon={ScaleIcon}>Symptom Check</NavLink>
@@ -40,15 +39,16 @@ export default function App() {
               <NavLink to="/trust" Icon={ShieldCheckIcon}>Trust & Safety</NavLink>
             </nav>
 
-            {/* Mobile Menu Button (visible on small screens only) */}
+            {/* Mobile Menu Button */}
             <div className="md:hidden">
               <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 text-gray-600 hover:text-blue-600">
-                {isMenuOpen ? <XIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
+                {/* FIX: Used XMarkIcon here */}
+                {isMenuOpen ? <XMarkIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
               </button>
             </div>
           </div>
 
-          {/* Mobile Menu Dropdown (toggles visibility) */}
+          {/* Mobile Menu Dropdown */}
           {isMenuOpen && (
             <div className="md:hidden bg-white shadow-lg border-t">
               <div className="flex flex-col space-y-2 p-4 max-w-6xl mx-auto">
