@@ -10,7 +10,7 @@ export default function SymptomPage() {
     setLoading(true);
     try {
       // Points to your Flask backend on port 5001
-      const res = await fetch('https://mediguide-lit.onrender.com/', {
+      const res = await fetch('https://mediguide-lit.onrender.com/api/health/symptoms', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ symptoms: input })
@@ -20,7 +20,7 @@ export default function SymptomPage() {
     } catch (err) {
       setResult({ 
         conditions: ['Error: Backend not reachable'], 
-        suggestions: 'Make sure your Python script is running on port 5001.' 
+        suggestions: 'Ensure the URL is correct and the API is live.' 
       });
     } finally {
       setLoading(false);
