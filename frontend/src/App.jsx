@@ -1,14 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'; // Import useState
 import Home from './pages/Home'
 import SymptomPage from './pages/SymptomPage'
 import Shop from './pages/Shop'
-// Import the new Trust and Safety page component
-import TrustAndSafetyPage from './pages/TrustAndSafetyPage' 
+import TrustAndSafetyPage from './pages/TrustAndSafetyPage'
 import { HashRouter as BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-// Import necessary icons from Heroicons (make sure these are installed)
-import { HomeIcon, ShoppingCartIcon, ScaleIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
+// Import icons needed for the menu toggle
+import { HomeIcon, ShoppingCartIcon, ScaleIcon, ShieldCheckIcon, MenuIcon, XIcon } from '@heroicons/react/24/outline'
 
 export default function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
+
+  // Helper component for navigation links
+  const NavLink = ({ to, children, Icon }) => (
+    <Link 
+      to={to} 
+      className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100 hover:text-blue-600 transition duration-150"
+      onClick={() => setIsMenuOpen(false)} // Close menu when a link is clicked
+    >
+      <Icon className="h-5 w-5" />
+      <span>{children}</span>
+    </Link>
+  );
+
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-slate-50">
@@ -18,26 +31,34 @@ export default function App() {
             <div className="text-xl font-bold text-blue-600">
               MediGuide Lite
             </div>
-            <nav className="flex space-x-4">
-              <Link to="/" className="flex items-center space-x-1 hover:text-blue-600">
-                <HomeIcon className="h-5 w-5" />
-                <span>Home</span>
-              </Link>
-              <Link to="/symptom" className="flex items-center space-x-1 hover:text-blue-600">
-                <ScaleIcon className="h-5 w-5" />
-                <span>Symptom Check</span>
-              </Link>
-              <Link to="/shop" className="flex items-center space-x-1 hover:text-blue-600">
-                <ShoppingCartIcon className="h-5 w-5" />
-                <span>Shop</span>
-              </Link>
-              {/* Added link to the new Trust & Safety page in the header navigation */}
-              <Link to="/trust" className="flex items-center space-x-1 hover:text-blue-600">
-                <ShieldCheckIcon className="h-5 w-5" />
-                <span>Trust & Safety</span>
-              </Link>
+            
+            {/* Desktop Navigation (visible on medium screens and up) */}
+            <nav className="hidden md:flex space-x-4">
+              <NavLink to="/" Icon={HomeIcon}>Home</NavLink>
+              <NavLink to="/symptom" Icon={ScaleIcon}>Symptom Check</NavLink>
+              <NavLink to="/shop" Icon={ShoppingCartIcon}>Shop</NavLink>
+              <NavLink to="/trust" Icon={ShieldCheckIcon}>Trust & Safety</NavLink>
             </nav>
+
+            {/* Mobile Menu Button (visible on small screens only) */}
+            <div className="md:hidden">
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 text-gray-600 hover:text-blue-600">
+                {isMenuOpen ? <XIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
+              </button>
+            </div>
           </div>
+
+          {/* Mobile Menu Dropdown (toggles visibility) */}
+          {isMenuOpen && (
+            <div className="md:hidden bg-white shadow-lg border-t">
+              <div className="flex flex-col space-y-2 p-4 max-w-6xl mx-auto">
+                <NavLink to="/" Icon={HomeIcon}>Home</NavLink>
+                <NavLink to="/symptom" Icon={ScaleIcon}>Symptom Check</NavLink>
+                <NavLink to="/shop" Icon={ShoppingCartIcon}>Shop</NavLink>
+                <NavLink to="/trust" Icon={ShieldCheckIcon}>Trust & Safety</NavLink>
+              </div>
+            </div>
+          )}
         </header>
 
         {/* Main Content Area */}
@@ -46,7 +67,6 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/symptom" element={<SymptomPage />} />
             <Route path="/shop" element={<Shop />} />
-            {/* Add the route for the new Trust and Safety page */}
             <Route path="/trust" element={<TrustAndSafetyPage />} />
           </Routes>
         </main>
