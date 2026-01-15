@@ -2,7 +2,7 @@
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://olulu-cloud.github.io/mediguide-lite",
+  "homepage": "https://olulu-cloud.github.io/mediguide-lit/",
   "type": "module",
   "scripts": {
     "start": "vite",
