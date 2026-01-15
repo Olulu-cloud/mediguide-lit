@@ -5,7 +5,7 @@ import Shop from './pages/Shop'
 import TrustAndSafetyPage from './pages/TrustAndSafetyPage'
 import { HashRouter as BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 // FIX: Changed XIcon to XMarkIcon
-import { HomeIcon, ShoppingCartIcon, ScaleIcon, ShieldCheckIcon, MenuIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { HomeIcon, ShoppingCartIcon, ScaleIcon, ShieldCheckIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false); 
@@ -43,7 +43,7 @@ export default function App() {
             <div className="md:hidden">
               <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 text-gray-600 hover:text-blue-600">
                 {/* FIX: Used XMarkIcon here */}
-                {isMenuOpen ? <XMarkIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
+                {isMenuOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
               </button>
             </div>
           </div>
